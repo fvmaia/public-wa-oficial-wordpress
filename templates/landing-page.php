@@ -435,14 +435,7 @@ if (!defined('ABSPATH')) {
 
     <nav>
         <div class="container" style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
-            <a href="#" class="logo">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="40" height="40" rx="12" fill="#6366F1"/>
-                    <path d="M20 10C14.4772 10 10 14.4772 10 20C10 21.8983 10.5299 23.6731 11.4473 25.1846L10 30L14.9459 28.5575C16.4974 29.4819 18.1865 30 20 30C25.5228 30 30 25.5228 30 20C30 14.4772 25.5228 10 20 10Z" fill="white"/>
-                    <circle cx="20" cy="20" r="3" fill="#F59E0B"/>
-                </svg>
-                Fornecedor<span>CRM</span>
-            </a>
+            <a href="#" class="logo"><img src="https://upciga.com/brand/logo-horizontal.png" alt="UpCiga" style="height:40px;"></a>
             <div class="nav-links">
                 <a href="#features">Recursos</a>
                 <a href="#how-it-works">Como Funciona</a>
