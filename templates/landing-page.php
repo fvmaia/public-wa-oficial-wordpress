@@ -561,7 +561,7 @@ if (!defined('ABSPATH')) {
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <a href="#" class="footer-logo">Fornecedor<span>CRM</span></a>
+                    <a href="#" class="footer-logo"><img src="https://upciga.com/brand/logo-horizontal.png" alt="UpCiga" style="height:40px;"></a>
                     <p style="color: #94a3b8; margin-bottom: 32px;">A solução definitiva para gestão de canais oficiais do WhatsApp Business com inteligência e escala.</p>
                 </div>
                 <div class="footer-col">
