@@ -582,15 +582,27 @@ if (!defined('ABSPATH')) {
                 </div>
                 <div class="footer-col">
                     <h4>Contato Direto</h4>
+                    <?php
+                    $support_email    = \WAS\Compliance\LegalPagesGenerator::get_placeholder( 'email', get_option( 'admin_email', 'support@example.com' ) );
+                    $legal_name       = \WAS\Compliance\LegalPagesGenerator::get_placeholder( 'legal_name' );
+                    $legal_cnpj       = \WAS\Compliance\LegalPagesGenerator::get_placeholder( 'cnpj' );
+                    $legal_address    = \WAS\Compliance\LegalPagesGenerator::get_placeholder( 'address' );
+                    $legal_city_state = \WAS\Compliance\LegalPagesGenerator::get_placeholder( 'city_state' );
+                    ?>
                     <ul>
-                        <?php $support_email = get_option( 'admin_email', 'support@example.com' ); ?>
                         <li><a href="mailto:<?php echo esc_attr( $support_email ); ?>"><?php echo esc_html( $support_email ); ?></a></li>
                     </ul>
+                    <address style="color: #94a3b8; font-style: normal; font-size: 0.875rem; line-height: 1.8; margin-top: 20px;">
+                        <?php if ( $legal_name ) : ?><strong style="color: #cbd5e1;"><?php echo esc_html( $legal_name ); ?></strong><br><?php endif; ?>
+                        <?php if ( $legal_cnpj ) : ?>CNPJ: <?php echo esc_html( $legal_cnpj ); ?><br><?php endif; ?>
+                        <?php if ( $legal_address ) : ?><?php echo esc_html( $legal_address ); ?><br><?php endif; ?>
+                        <?php if ( $legal_city_state ) : ?><?php echo esc_html( $legal_city_state ); ?><?php endif; ?>
+                    </address>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; <?php echo date('Y'); ?> UpWaba CRM. Desenvolvido por UpCiga Sistemas.</p>
-                <p>Enterprise Ready | Official Meta Partner API Integration</p>
+                <p>Integração com a WhatsApp Business Platform (Cloud API) da Meta.</p>
             </div>
         </div>
     </footer>
