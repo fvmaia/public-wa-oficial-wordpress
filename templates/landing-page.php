@@ -1,6 +1,6 @@
 <?php
 /**
- * Template for Plataforma CRM Landing Page
+ * Template for UpWaba CRM Landing Page
  */
 if (!defined('ABSPATH')) {
     exit;
@@ -11,7 +11,7 @@ if (!defined('ABSPATH')) {
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plataforma CRM | WhatsApp Business Official SaaS</title>
+    <title>UpWaba CRM | WhatsApp Business Official SaaS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -484,7 +484,7 @@ if (!defined('ABSPATH')) {
         <div class="container">
             <div class="section-header">
                 <h2>Potencialize seu Business</h2>
-                <p>O Plataforma CRM não é apenas um plugin, é uma central de comando para sua comunicação empresarial.</p>
+                <p>O UpWaba CRM não é apenas um plugin, é uma central de comando para sua comunicação empresarial.</p>
             </div>
             
             <div class="features-grid">
@@ -511,7 +511,7 @@ if (!defined('ABSPATH')) {
                 <div class="feature-card highlight">
                     <div class="feature-icon">🛡️</div>
                     <h3>Segurança Militar</h3>
-                    <p>Criptografia de ponta a ponta para seus tokens e dados sensíveis. O Plataforma CRM protege o que é mais valioso: sua conexão.</p>
+                    <p>Criptografia de ponta a ponta para seus tokens e dados sensíveis. O UpWaba CRM protege o que é mais valioso: sua conexão.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📈</div>
@@ -552,7 +552,7 @@ if (!defined('ABSPATH')) {
     <section class="cta-section">
         <div class="container">
             <h2>Pronto para dominar o jogo?</h2>
-            <p style="font-size: 1.5rem; margin-bottom: 50px; opacity: 0.9;">Junte-se às empresas que já escalaram seu atendimento com o Plataforma CRM.</p>
+            <p style="font-size: 1.5rem; margin-bottom: 50px; opacity: 0.9;">Junte-se às empresas que já escalaram seu atendimento com o UpWaba CRM.</p>
             <a href="<?php echo home_url('/app/login'); ?>" class="btn-cta">Acessar Plataforma Agora</a>
         </div>
     </section>
@@ -589,7 +589,7 @@ if (!defined('ABSPATH')) {
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <?php echo date('Y'); ?> Plataforma CRM. Desenvolvido por UpCiga Sistemas.</p>
+                <p>&copy; <?php echo date('Y'); ?> UpWaba CRM. Desenvolvido por UpCiga Sistemas.</p>
                 <p>Enterprise Ready | Official Meta Partner API Integration</p>
             </div>
         </div>

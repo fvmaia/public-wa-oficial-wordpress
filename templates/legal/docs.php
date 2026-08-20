@@ -1,6 +1,6 @@
 <?php
 /**
- * Template for Technical Documentation Page - Plataforma CRM
+ * Template for Technical Documentation Page - UpWaba CRM
  */
 if (!defined('ABSPATH')) {
     exit;
@@ -11,7 +11,7 @@ if (!defined('ABSPATH')) {
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentação Técnica | Plataforma CRM</title>
+    <title>Documentação Técnica | UpWaba CRM</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -188,7 +188,7 @@ if (!defined('ABSPATH')) {
 <div class="docs-wrapper">
     <aside class="docs-sidebar">
         <nav class="sidebar-nav">
-            <a href="<?php echo home_url('/'); ?>" style="font-weight: 800; color: var(--primary); font-size: 1.25rem; margin-bottom: 20px;">Plataforma CRM</a>
+            <a href="<?php echo home_url('/'); ?>" style="font-weight: 800; color: var(--primary); font-size: 1.25rem; margin-bottom: 20px;">UpWaba CRM</a>
             
             <h4>Arquitetura</h4>
             <ul>
@@ -216,13 +216,13 @@ if (!defined('ABSPATH')) {
     <main class="docs-content">
         <header>
             <span class="badge">Documentação Técnica</span>
-            <h1>Como o Plataforma CRM funciona?</h1>
+            <h1>Como o UpWaba CRM funciona?</h1>
             <p>Um guia completo sobre a arquitetura, segurança e fluxos operacionais da plataforma.</p>
         </header>
 
         <section id="intro">
             <h2>1. Filosofia do Projeto</h2>
-            <p>O Plataforma CRM foi concebido como uma camada de abstração robusta sobre a **WhatsApp Business Platform (Cloud API)** da Meta. Ao contrário de integrações informais, ele utiliza protocolos oficiais para garantir estabilidade, escala e segurança jurídica.</p>
+            <p>O UpWaba CRM foi concebido como uma camada de abstração robusta sobre a **WhatsApp Business Platform (Cloud API)** da Meta. Ao contrário de integrações informais, ele utiliza protocolos oficiais para garantir estabilidade, escala e segurança jurídica.</p>
             <div class="highlight-box">
                 <h4>Regra de Ouro</h4>
                 <p>O sistema segue a separação estrita de responsabilidades: Controllers não contêm lógica de negócio, Repositories não tomam decisões e toda regra reside em Services ou Orchestrators.</p>
@@ -302,7 +302,7 @@ $messages = $messageRepository->find_by_tenant($tenant_id);
         </section>
 
         <footer style="margin-top: 100px; border-top: 1px solid var(--border-color); padding-top: 40px; text-align: center;">
-            <p>&copy; <?php echo date('Y'); ?> Plataforma CRM - Documentação Interna de Engenharia.</p>
+            <p>&copy; <?php echo date('Y'); ?> UpWaba CRM - Documentação Interna de Engenharia.</p>
             <a href="<?php echo home_url('/support'); ?>" style="color: var(--primary); font-weight: 600; text-decoration: none;">Precisa de suporte técnico?</a>
         </footer>
     </main>
