@@ -589,7 +589,7 @@ if (!defined('ABSPATH')) {
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <?php echo date('Y'); ?> Plataforma CRM. Desenvolvido por Equipe do Produto.</p>
+                <p>&copy; <?php echo date('Y'); ?> Plataforma CRM. Desenvolvido por UpCiga Sistemas.</p>
                 <p>Enterprise Ready | Official Meta Partner API Integration</p>
             </div>
         </div>
