@@ -461,20 +461,20 @@ if (!defined('ABSPATH')) {
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <h3>100%</h3>
-                    <p>Conformidade Meta</p>
+                    <h3>Oficial</h3>
+                    <p>WhatsApp Cloud API</p>
                 </div>
                 <div class="stat-item">
-                    <h3>0%</h3>
-                    <p>Risco de Banimento</p>
+                    <h3>24h</h3>
+                    <p>Janela de Atendimento</p>
                 </div>
                 <div class="stat-item">
-                    <h3>24/7</h3>
-                    <p>Automação Ativa</p>
+                    <h3>LGPD</h3>
+                    <p>Tratamento de Dados</p>
                 </div>
                 <div class="stat-item">
-                    <h3>1M+</h3>
-                    <p>Mensagens/Mês</p>
+                    <h3>Multi-tenant</h3>
+                    <p>Isolamento por Empresa</p>
                 </div>
             </div>
         </div>
@@ -510,8 +510,8 @@ if (!defined('ABSPATH')) {
                 </div>
                 <div class="feature-card highlight">
                     <div class="feature-icon">🛡️</div>
-                    <h3>Segurança Militar</h3>
-                    <p>Criptografia de ponta a ponta para seus tokens e dados sensíveis. O UpWaba CRM protege o que é mais valioso: sua conexão.</p>
+                    <h3>Tokens Criptografados</h3>
+                    <p>Seus tokens de acesso e dados sensíveis são armazenados de forma criptografada. O UpWaba CRM protege o que é mais valioso: sua conexão.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📈</div>
@@ -552,7 +552,7 @@ if (!defined('ABSPATH')) {
     <section class="cta-section">
         <div class="container">
             <h2>Pronto para dominar o jogo?</h2>
-            <p style="font-size: 1.5rem; margin-bottom: 50px; opacity: 0.9;">Junte-se às empresas que já escalaram seu atendimento com o UpWaba CRM.</p>
+            <p style="font-size: 1.5rem; margin-bottom: 50px; opacity: 0.9;">Comece a atender seus clientes pelo WhatsApp usando a API oficial da Meta.</p>
             <a href="<?php echo home_url('/app/login'); ?>" class="btn-cta">Acessar Plataforma Agora</a>
         </div>
     </section>
@@ -562,7 +562,7 @@ if (!defined('ABSPATH')) {
             <div class="footer-grid">
                 <div class="footer-col">
                     <a href="#" class="footer-logo"><img src="https://upciga.com/brand/logo-horizontal.png" alt="UpCiga" style="height:40px;"></a>
-                    <p style="color: #94a3b8; margin-bottom: 32px;">A solução definitiva para gestão de canais oficiais do WhatsApp Business com inteligência e escala.</p>
+                    <p style="color: #94a3b8; margin-bottom: 32px;">Plataforma para gestão de canais oficiais do WhatsApp Business, construída sobre a Cloud API da Meta.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Navegação</h4>
