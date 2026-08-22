@@ -11,7 +11,7 @@ if (!defined('ABSPATH')) {
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UpWaba CRM | WhatsApp Business Official SaaS</title>
+    <title>UpWaba CRM | Atendimento no WhatsApp Business API</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -447,7 +447,7 @@ if (!defined('ABSPATH')) {
 
     <header class="hero">
         <div class="container">
-            <span class="badge-hero">Oficial WhatsApp Business Platform</span>
+            <span class="badge-hero">Construído sobre a WhatsApp Business Platform</span>
             <h1>O <span class="purple">CRM</span> que <span class="orange">Domina</span> seu Atendimento.</h1>
             <p>Conecte-se à API oficial da Meta e centralize o atendimento da sua empresa no WhatsApp, em uma plataforma construída sobre a Cloud API.</p>
             <div class="hero-btns">
@@ -461,8 +461,8 @@ if (!defined('ABSPATH')) {
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <h3>Oficial</h3>
-                    <p>WhatsApp Cloud API</p>
+                    <h3>Cloud API</h3>
+                    <p>Integração Direta com a Meta</p>
                 </div>
                 <div class="stat-item">
                     <h3>24h</h3>
@@ -525,7 +525,7 @@ if (!defined('ABSPATH')) {
     <section id="how-it-works" class="how-it-works">
         <div class="container">
             <div class="section-header">
-                <h2>Simples. Rápido. Oficial.</h2>
+                <h2>Simples. Rápido. Direto na Cloud API.</h2>
                 <p>Veja como é fácil transformar sua comunicação em 3 passos simples.</p>
             </div>
             
