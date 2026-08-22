@@ -225,11 +225,156 @@ O token gerado pelo Graph API Explorer expira em 1–2h — inadequado para prod
 | Teste de recebimento (inbound) — número de teste | ✅ |
 | Teste de recebimento (inbound) — número de produção | ✅ |
 | Teste de envio (outbound) — número de produção | ✅ |
+| Verificação da empresa (Business Verification) | ✅ Aprovada em 18/08/2026 |
+| Verificação de Acesso / Tech Provider | 🔵 Em análise (enviada; prazo-limite 20/10/2026) |
+| Conformidade do site para revisão Meta | ✅ |
+| **Embedded Signup self-service (tenant)** | ❌ **Bloqueado — falta `config_id`** (ver seção 11) |
 
 ### Pendências / próximos passos sugeridos
-- **Etapa 3 — Verificação da empresa** na Meta (aumenta limites de mensagens/dia, remove restrições de escala).
-- Validar o fluxo de **Embedded Signup** (auto-cadastro de números de clientes) logado como usuário-tenant comum, sem privilégio de administrador do WordPress, para confirmar se está liberado para uso self-service pelos clientes finais.
+- Aguardar aprovação do **Tech Provider** (análise em ~5 dias úteis) — pré-requisito do Embedded Signup.
+- Após aprovação: criar a configuração de Embedded Signup na Meta, obter o `config_id` e preencher em Configurações Meta (ver seção 11).
 - Repetir a atribuição de ativos (`subscribed_apps` + System User) para cada novo tenant/WABA que for onboarded.
+
+---
+
+## 11. Embedded Signup (onboarding self-service de clientes) — **bloqueado**
+
+> Teste realizado nesta implantação. Resultado documentado abaixo para não se repetir a investigação.
+
+### Situação encontrada
+
+Ao acessar **WhatsApp SaaS → WhatsApp Setup** (`admin.php?page=was-settings-whatsapp`), a página exibe:
+
+> ⚠️ *"Você precisa configurar a **URL do Cadastro Incorporado** antes de conectar uma conta WhatsApp. Vá em Configurações Meta."*
+
+**Importante:** esse aviso aparece mesmo logado como `admin` (que tem todas as capabilities). Portanto **não é problema de permissão** — é configuração ausente. Criar um usuário-tenant para testar produz o mesmo resultado.
+
+### Causa raiz
+
+A condição de liberação está em `templates/settings-whatsapp.php` (~linha 17):
+
+```php
+$has_signup_config = (bool) ( $embedded_signup_url
+    || ( $meta_app && !empty($meta_app->app_id) && !empty($meta_app->config_id) ) );
+```
+
+Exige **um** destes, e ambos estão vazios:
+
+| Campo | Onde fica | Estado |
+|---|---|---|
+| `embedded_signup_url` | Configurações Meta → "Link do Cadastro Incorporado" | vazio |
+| `config_id` | Configurações Meta → "Embedded Signup Configuration ID" | vazio |
+
+### O que já está pronto (não precisa mexer)
+
+- Arquitetura multi-tenant real: tabelas com `tenant_id`, `TenantRepository`, `TenantContext`.
+- Menu do tenant com capability própria: **WhatsApp Setup** usa `was_manage_whatsapp` (≠ `manage_options`).
+- Botão de Embedded Signup já presente na página do tenant.
+- Fluxo oficial da Meta implementado (Facebook Login for Business via SDK), **não** QR code de bibliotecas não-oficiais.
+- Roteamento de webhook por tenant (lookup por `phone_number_id` / `waba_id`) e validação HMAC por app.
+
+### Ordem correta para destravar
+
+1. **Aprovação do Tech Provider** (Verificação de Acesso) — pré-requisito.
+2. No painel da Meta, criar a **configuração de Embedded Signup** do app.
+3. Copiar o **`config_id`** gerado.
+4. Colar em **WhatsApp SaaS → Configurações Meta → Cadastro Incorporado → Embedded Signup Configuration ID** e salvar.
+5. Revalidar a página **WhatsApp Setup** logado como usuário-tenant comum (sem `manage_options`), confirmando que o botão aparece e o popup do Facebook abre.
+
+### Enquanto não destrava
+
+O caminho operacional disponível é o **Painel Master → Números → "Cadastrar novo número"**, onde o operador da plataforma seleciona o tenant e conecta o número **em nome do cliente**. Funcional, porém não é self-service.
+
+---
+
+## 12. Verificação de Acesso (Tech Provider) e adequação do site
+
+### 12.1 Distinção entre as duas verificações
+
+| Verificação | O que é | Status |
+|---|---|---|
+| **Business Verification** | Confirma que a empresa é real (CNPJ, endereço, site). É a "Etapa 3" do painel. | ✅ Aprovada em 18/08/2026 |
+| **Access Verification / Tech Provider** | Credencia a empresa a **gerenciar WhatsApp de terceiros** (clientes). Exige a anterior aprovada. | 🔵 Em análise |
+
+Onde fica: **Meta Business Suite → Configurações → Informações do portfólio empresarial → Access verification status → Iniciar verificação**.
+
+### 12.2 Respostas enviadas no formulário
+
+- **Tipo de empresa:** Plataforma de SaaS
+- **Múltiplos portfólios:** Não
+- **Site:** `https://upwaba.upciga.com/` (não `upciga.com` — o revisor precisa ver o serviço descrito)
+- **Descrição:** texto explicando o serviço de atendimento multi-empresa, uso do Embedded Signup oficial, isolamento de dados entre clientes e não-reutilização/venda de dados.
+
+### 12.3 Adequação do site antes do envio
+
+O revisor da Meta visita o site informado. Foram removidas alegações não comprováveis que poderiam gerar reprovação:
+
+| Removido | Substituído por |
+|---|---|
+| "Official Meta Partner API Integration" | "Integração com a WhatsApp Business Platform (Cloud API) da Meta." |
+| "100% Conformidade Meta" | "Oficial · WhatsApp Cloud API" |
+| "0% Risco de Banimento" | "24h · Janela de Atendimento" |
+| "24/7 Automação Ativa" | "LGPD · Tratamento de Dados" |
+| "1M+ Mensagens/Mês" | "Multi-tenant · Isolamento por Empresa" |
+| "Segurança Militar" | "Tokens Criptografados" |
+| "entrega garantida" | "acompanhamento do status de entrega" |
+| "ferramenta mais robusta do mercado" / "multiplique suas vendas" | "centralize o atendimento da sua empresa no WhatsApp" |
+| "Junte-se às empresas que já escalaram…" (sugeria base de clientes) | "Comece a atender seus clientes pelo WhatsApp…" |
+| "A solução definitiva…" | "Plataforma para gestão de canais oficiais…" |
+
+Também adicionados ao rodapé (via `LegalPagesGenerator::get_placeholder`): razão social, CNPJ, endereço e e-mail de domínio próprio.
+
+### 12.4 Dados legais da empresa (alimentam rodapé + páginas de compliance)
+
+Preenchidos em **Configurações Meta → Dados das páginas legais**:
+
+| Campo | Valor |
+|---|---|
+| Nome da empresa / marca | UpCiga Sistemas |
+| Razão social | UPCIGA SERVICOS DE INFORMATICA LTDA |
+| CNPJ | 27.686.124/0001-29 |
+| Endereço | Rua Juarez Tavora, 522 — Ed. Maximum Sho, Sala 507 |
+| Cidade / UF | João Pessoa / PB — CEP 58040-020 |
+| E-mail de contato | gestao@upciga.com |
+| Encarregado / DPO | Francisco V M Neto |
+
+### 12.5 URLs do app na Meta — correção importante
+
+As **Configurações do app → Básico** vinham com placeholders apontando para `facebook.com`. Corrigido para:
+
+| Campo | Valor correto |
+|---|---|
+| Email de contato | `gestao@upciga.com` |
+| URL da Política de Privacidade | `https://upwaba.upciga.com/privacy-policy` |
+| URL dos Termos de Serviço | `https://upwaba.upciga.com/terms-of-service` |
+| Exclusão de dados do usuário | `https://upwaba.upciga.com/data-deletion` |
+
+> ⚠️ **Armadilha técnica:** esses campos são inputs React. Definir `.value` via JavaScript **não persiste** — o "Salvar alterações" grava o estado interno do React, não o DOM. É necessário digitar de fato nos campos (eventos de teclado reais) e **recarregar a página para confirmar** que persistiu.
+
+### 12.6 Rebrand aplicado
+
+"Plataforma CRM" → **"UpWaba CRM"** (12 ocorrências em `landing-page.php` e `legal/docs.php`), logo do rodapé trocado pela imagem UpCiga, e crédito alterado para "Desenvolvido por UpCiga Sistemas".
+
+---
+
+## Notas operacionais
+
+### WP-CLI não está instalado no container
+Usar o PHP do próprio WordPress:
+```bash
+php -r 'require_once "/var/www/html/wp-load.php"; /* ... */'
+```
+Exemplos usados nesta implantação: listar usuários, redefinir senha (`wp_set_password`), validar senha (`wp_check_password`) e gravar dados legais (`LegalPagesGenerator::save_company_data`).
+
+### Erro "Briefly unavailable for scheduled maintenance"
+Uma atualização interrompida deixa o arquivo `.maintenance` na raiz do WordPress, bloqueando **todo** o acesso — inclusive o login, o que dá falsa impressão de senha incorreta. Verificar e remover:
+```bash
+ls -la /var/www/html/.maintenance && rm -f /var/www/html/.maintenance
+```
+
+### Terminal do Coolify instável
+Durante a implantação o painel do Coolify caiu algumas vezes. Alternativa que funcionou para editar arquivos do plugin: **WP Admin → Ferramentas → Editor de arquivos de plugin**, selecionando o plugin `whatsapp-saas-core.php` (o arquivo principal — não `whatsapp-saas.php`, que causa erro `invalid_plugin`).
+O editor usa **CodeMirror**: alterar o `<textarea>` não basta, é preciso usar a API do editor (`document.querySelector('.CodeMirror').CodeMirror.setValue(...)` seguido de `.save()`).
 
 ---
 
@@ -242,3 +387,7 @@ O token gerado pelo Graph API Explorer expira em 1–2h — inadequado para prod
 - `includes/WhatsApp/WebhookProcessor.php` — roteamento de webhook por `phone_number_id`/`waba_id`.
 - `includes/Router/MetaAppResolver.php` — validação de assinatura HMAC por app.
 - `includes/REST/EmbeddedSignupController.php`, `includes/Router/OnboardingService.php` — fluxo de Embedded Signup.
+- `templates/settings-whatsapp.php` — página do tenant (**WhatsApp Setup**); contém a condição `$has_signup_config` que bloqueia o self-service.
+- `includes/Compliance/LegalPagesGenerator.php` — dados legais da empresa (option `was_legal_company_data`) que alimentam rodapé e páginas de compliance.
+- `templates/legal/docs.php` — documentação técnica pública (também rebrandeada).
+- `templates/admin-master/phones.php` — caminho alternativo (operador conecta número em nome do tenant).
