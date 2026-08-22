@@ -349,7 +349,21 @@ As **Configurações do app → Básico** vinham com placeholders apontando para
 | URL dos Termos de Serviço | `https://upwaba.upciga.com/terms-of-service` |
 | Exclusão de dados do usuário | `https://upwaba.upciga.com/data-deletion` |
 
-> ⚠️ **Armadilha técnica:** esses campos são inputs React. Definir `.value` via JavaScript **não persiste** — o "Salvar alterações" grava o estado interno do React, não o DOM. É necessário digitar de fato nos campos (eventos de teclado reais) e **recarregar a página para confirmar** que persistiu.
+> ⚠️ **Armadilha de verificação:** logo após salvar, recarregar a página pode exibir os **valores antigos** — é renderização defasada da interface da Meta, não falha no salvamento. Não refaça a edição com base nessa leitura. Para confirmar de verdade, aguarde alguns minutos e recarregue, ou abra em outro navegador/sessão: se os valores aparecerem lá, vieram do servidor.
+>
+> Os campos são inputs React. Preenchê-los via JavaScript **funciona**, desde que se use o setter nativo do prototype e se disparem os eventos `input`/`change`:
+> ```js
+> const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+> setter.call(el, valor);
+> el.dispatchEvent(new Event('input',  { bubbles: true }));
+> el.dispatchEvent(new Event('change', { bubbles: true }));
+> ```
+
+### 12.5.1 Campo "URL do site" — não preenchido
+
+O campo `site_url` pertence à plataforma **Website**, que precisa ser adicionada em **Adicionar plataforma → Website → Avançar**. Nesta implantação o modal marcava "Website" como selecionado, mas a seção não era renderizada e o input `site_url` nunca apareceu no DOM — comportamento inconsistente da interface da Meta.
+
+Campo é **opcional** e não bloqueia a revisão; os URLs de compliance (privacidade, termos, exclusão de dados) são os que importam e estão preenchidos. Fica registrado como pendência de baixa prioridade.
 
 ### 12.6 Rebrand aplicado
 
