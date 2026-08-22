@@ -449,7 +449,7 @@ if (!defined('ABSPATH')) {
         <div class="container">
             <span class="badge-hero">Oficial WhatsApp Business Platform</span>
             <h1>O <span class="purple">CRM</span> que <span class="orange">Domina</span> seu Atendimento.</h1>
-            <p>Conecte-se à API oficial da Meta, automatize processos e multiplique suas vendas com a ferramenta mais robusta do mercado para gestão de WhatsApp.</p>
+            <p>Conecte-se à API oficial da Meta e centralize o atendimento da sua empresa no WhatsApp, em uma plataforma construída sobre a Cloud API.</p>
             <div class="hero-btns">
                 <a href="<?php echo home_url('/app/login'); ?>" class="btn-primary">Criar Minha Conta</a>
                 <a href="#how-it-works" class="btn-secondary">Descobrir Como</a>
@@ -496,7 +496,7 @@ if (!defined('ABSPATH')) {
                 <div class="feature-card">
                     <div class="feature-icon">🎯</div>
                     <h3>Cloud API Direta</h3>
-                    <p>Integração nativa com os servidores da Meta. Latência mínima e entrega garantida para todas as suas notificações.</p>
+                    <p>Integração nativa com os servidores da Meta, com acompanhamento do status de entrega de cada mensagem enviada.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">✨</div>
